@@ -2,6 +2,7 @@ package main.java.headfirst.combined.djview;
 
 public class HeartAdapter implements BeatModelInterface {
 	HeartModelInterface heart;
+	private int nInstancia;
  
 	public HeartAdapter(HeartModelInterface heart) {
 		this.heart = heart;
@@ -33,5 +34,15 @@ public class HeartAdapter implements BeatModelInterface {
   
 	public void removeObserver(BPMObserver o) {
 		heart.removeObserver(o);
+	}
+	
+ 	public int getnInstancia()
+ 	{
+ 		return nInstancia;
+ 	}
+ 	
+ 	public void setnInstancia(int n)
+	{
+		nInstancia = n;
 	}
 }

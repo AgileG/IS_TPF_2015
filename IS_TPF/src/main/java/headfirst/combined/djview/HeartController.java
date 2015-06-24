@@ -11,6 +11,8 @@ public class HeartController implements ControllerInterface {
         view.createControls();
 		view.disableStopMenuItem();
 		view.disableStartMenuItem();
+		view.setVistaPosicion(20, 170);
+		view.setControlPosicion(20, 0);
 	}
   
 	public void start() {}

@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class BeatBar extends JProgressBar implements Runnable { 
-    JProgressBar progressBar;
+	JProgressBar progressBar;
 	Thread thread;
 
 	public BeatBar() {

@@ -4,12 +4,13 @@ import javax.sound.midi.*;
 import java.util.*;
 
 public class BeatModel implements BeatModelInterface, MetaEventListener {
-    Sequencer sequencer;
+	Sequencer sequencer;
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
     int bpm = 90;
     Sequence sequence;
     Track track;
+    int nInstancia = 0;
  
 	public void initialize() {
         setUpMidi();
@@ -40,6 +41,16 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
   
 	public int getBPM() {
 		return bpm;
+	}
+	
+	public int getnInstancia()
+ 	{
+ 		return nInstancia;
+ 	}
+	
+	public void setnInstancia(int n)
+	{
+		nInstancia = n;
 	}
   
 	void beatEvent() {
@@ -128,7 +139,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
         track = sequence.createTrack();
 
       	makeTracks(trackList);
-		track.add(makeEvent(192,9,1,0,4));      
+		track.add(makeEvent(192,9,1,0,4));
 	 	try {
 			sequencer.setSequence(sequence);                    
 		} catch(Exception e) {
@@ -140,7 +151,6 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
        
        for (int i = 0; i < list.length; i++) {
           int key = list[i];
-
           if (key != 0) {
              track.add(makeEvent(144,9,key, 100, i));
              track.add(makeEvent(128,9,key, 100, i+1));
@@ -154,6 +164,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
             ShortMessage a = new ShortMessage();
             a.setMessage(comd, chan, one, two);
             event = new MidiEvent(a, tick);
+            
             
         } catch(Exception e) {
 			e.printStackTrace(); 

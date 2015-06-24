@@ -2,6 +2,7 @@ package main.java.headfirst.combined.djview;
   
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
+	HeartModelInterface model2;
 	DJView view;
    
 	public BeatController(BeatModelInterface model) {
@@ -11,6 +12,8 @@ public class BeatController implements ControllerInterface {
         view.createControls();
 		view.disableStopMenuItem();
 		view.enableStartMenuItem();
+		view.setVistaPosicion(200, 170);
+		view.setControlPosicion(200, 0);
 		model.initialize();
 	}
   
@@ -27,7 +30,10 @@ public class BeatController implements ControllerInterface {
 	}
     
 	public void increaseBPM() {
+		model2 = HeartModel.getInstancia();// intento de creacion de nueva instancia de un HeartModel
         int bpm = model.getBPM();
+        int nInstancia = model2.getnInstancias();
+        model.setnInstancia(nInstancia);
         model.setBPM(bpm + 1);
 	}
     

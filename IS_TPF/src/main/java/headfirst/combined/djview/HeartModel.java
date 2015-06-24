@@ -9,8 +9,33 @@ public class HeartModel implements HeartModelInterface, Runnable {
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
+	
+/* Para el funcionamiento del patron Singleton debemos tener en cuenta:
+ 1 Agergar la variable privada, static y del mismo tipo de la clase que lo aplica
+ 2 El constructor debera ser privado
+ 3 Agregamos el metodo getInstancia() para la primera y unica creacion del singleton
+*/ 
+	private static HeartModel instanciaUnica;
+	private static int nInstancias = 0;
+	
+	public static HeartModel getInstancia()
+	{
+		nInstancias= nInstancias + 1;
+		if(instanciaUnica == null)
+		{
+			instanciaUnica= new HeartModel();
+			nInstancias=0;
+		}
+		
+		return instanciaUnica;
+	}
+	
+	public int getnInstancias()
+	{
+		return nInstancias;
+	}
 
-	public HeartModel() {
+	private HeartModel() {
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -30,6 +55,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 				if (rate != lastrate) {
 					lastrate = rate;
 					notifyBPMObservers();
+					//System.out.println(bpmObservers.size());
 				}
 			}
 			try {

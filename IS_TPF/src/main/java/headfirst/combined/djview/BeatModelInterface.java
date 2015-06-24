@@ -2,7 +2,7 @@ package main.java.headfirst.combined.djview;
   
 public interface BeatModelInterface {
 	void initialize();
-  
+	  
 	void on();
   
 	void off();
@@ -10,6 +10,10 @@ public interface BeatModelInterface {
     void setBPM(int bpm);
   
 	int getBPM();
+	
+	int getnInstancia();
+	
+	void setnInstancia(int nInstancia);
   
 	void registerObserver(BeatObserver o);
   
