@@ -133,7 +133,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     } 
 
      public void buildTrackAndStart() {
-        int[] trackList = {35, 0, 46, 0};
+        int[] trackList = {72, 0, 72, 0};
     
         sequence.deleteTrack(null);
         track = sequence.createTrack();

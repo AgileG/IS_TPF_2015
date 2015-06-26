@@ -3,3 +3,4 @@ Trabajo practico final de Ingeniería de software 2015
 
 TAREAS:
 Se agrega requerimientos asociados a consigna 1.
+Se cambia sonido de BeatModel sobre rama master.
