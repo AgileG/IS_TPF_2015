@@ -2,7 +2,7 @@ package main.java.headfirst.combined.djview;
   
 public class HeartController implements ControllerInterface {
 	HeartModelInterface model;
-	DJView view;
+    DJView view;
   
 	public HeartController(HeartModelInterface model) {
 		this.model = model;
