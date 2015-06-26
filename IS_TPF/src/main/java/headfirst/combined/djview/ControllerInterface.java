@@ -7,3 +7,5 @@ public interface ControllerInterface {
 	void decreaseBPM();
  	void setBPM(int bpm);
 }
+
+
