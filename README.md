@@ -9,3 +9,4 @@ Se agregó test1 y test2 sobre rama_1 asociado a version REL1.1.0.
 Se genera marge de rama_1 sobre la master.
 Se crea etiqueta REL1.1.1 de version testeada, en base a requerimientos de consigna 1.
 Agregamos vista nueva y clases asociadas para nuevo modelo.
+Se actualiza carpeta Imagenes.
