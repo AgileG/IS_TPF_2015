@@ -15,7 +15,13 @@ public interface SubmarineModelInterface {
 	void setY(int xx);
 	
 	void iniciarHilo();
-  
+	
+	void setPausar(boolean b);
+	
+	boolean getVivo();
+	
+	void PasarBeatModel(BeatModel modelB);
+	
 	void registerObserver(BeatObserver o);
   
 	void removeObserver(BeatObserver o);

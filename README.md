@@ -12,3 +12,4 @@ Agregamos vista nueva y clases asociadas para nuevo modelo.
 Se actualiza carpeta Imagenes.
 Se agrega menu en nueva vista de submarino.
 Se corrige SubmarineModel y SubmarineTestDrive.
+Se agrega funciones al menu y vista Djview con nuestro modelo.

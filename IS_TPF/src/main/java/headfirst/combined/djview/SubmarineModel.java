@@ -9,15 +9,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
 	private Thread hilo;
+	BeatModel modelB;
 
 	private Timer timer, tiempo;
-	private boolean vivo;
+	private boolean vivo, pausar;
 	private int x, y, contador, segundos, centesimas, descargas;
 	
 	public SubmarineModel()
@@ -28,6 +31,7 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		contador = 0;
 		segundos = 0;
 		descargas =10;
+		pausar =false;
 		
 		x=0;
 		y=250;
@@ -44,6 +48,8 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		
 		while (vivo)
 		{
+			int bpm=1;
+			while(pausar == false){
 			if(y>500)
 			{
 				tiempo.start();
@@ -51,7 +57,18 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				{
 					centesimas=0;
 					segundos+=1;
+					if(segundos <= 5){
+					bpm = modelB.getBPM() + 20;
+					if(bpm < 60 && segundos<5){modelB.setBPM(bpm);}
+					else{modelB.setBPM(60);}
+					modelB.notifyBeatObservers();}
 				}
+				
+				if(segundos>=5 && (centesimas%2==0))
+				{
+					modelB.notifyBeatObservers();
+				}
+				
 				if(segundos==60)
 				{
 					segundos=0;
@@ -63,6 +80,15 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				tiempo.stop();
 				centesimas=0;
 				segundos=0;
+				if(bpm > 10){modelB.setBPM(10); bpm=1;}
+			}
+			}
+			tiempo.stop();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
@@ -75,6 +101,19 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	public void terminarJuego() {
 		vivo = false;
 	}
+	
+	public void PasarBeatModel(BeatModel model)
+	{
+		modelB=model;
+	}
+	
+	public void setPausar(boolean b)
+	{
+		if(b==true){pausar=true;}
+		else{pausar=false;}
+	}
+	
+	public boolean getVivo(){return vivo;} 
 	
 	public int getSegundos(){return segundos;}
 	

@@ -26,13 +26,15 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 	SubmarineModelInterface model;
 	Thread hilo;
 	
+	Graphics2D g2;
 	private Image Background;
 	private Image explosion;
-	private boolean dibujar, vivo, keyboard_on;
+	private boolean dibujar, vivo, keyboard_on, pausar;
 	private Image Oceano;
 	
 	private Image Submarino;
 	private Image contadorFondo;
+	private Image inicial;
 	
 	JFrame ventana;
 	JMenuBar menuBar;
@@ -51,6 +53,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		Oceano = new ImageIcon("Imagenes/Background.gif").getImage();
 		Submarino = new ImageIcon("Imagenes/Submarino_fx.png").getImage();
 		contadorFondo = new ImageIcon("Imagenes/ContFondo2.png").getImage();
+		inicial = new ImageIcon("Imagenes/Inicial.png").getImage();
 		this.addKeyListener(this);
 		dibujar = false;
 		vivo = true;
@@ -60,15 +63,43 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		explosion = new ImageIcon("Data/Explosion.gif").getImage();
 		dibujar = false;
 		keyboard_on=true;
+		pausar = false;
         
 
 	}
 	
 	public void run() {
 		
-		while (vivo)
+		while(model.getVivo()){
+		while (pausar==false)
 		{
 			repaint();			
+		}
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	}
+	
+	public void setVisibleInicial(boolean b)
+	{
+		inicial=null;
+	}
+	
+	public void setPausar(boolean b)
+	{
+		if(b == true)
+		{
+			pausar = true;
+			model.setPausar(pausar);
+		}
+		else
+		{
+			pausar = false;
+			model.setPausar(pausar);
 		}
 	}
 	
@@ -77,7 +108,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		ventana = vent;
 		
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//JFrame.setDefaultLookAndFeelDecorated(true);
+		JFrame.setDefaultLookAndFeelDecorated(true);
 				menuBar = new JMenuBar();
 		        menu = new JMenu("Menu");
 		        restartMenuItem = new JMenuItem("Reiniciar");
@@ -92,7 +123,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		        menu.add(ayudaMenuItem);
 		        ayudaMenuItem.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent event) {
-		                controlle.stop();
+		                controlle.start();
 		            }
 		        });
 		        
@@ -119,13 +150,14 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
+		g2 = (Graphics2D) g;
 		g2.drawImage(Oceano, 0, 0, null);		
 		g2.drawImage(Submarino, model.getX(), model.getY(), null);
 		g2.setFont(new Font("digital display tfb", Font.ITALIC, 75));
 		g2.setColor(Color.red.darker());
 		g2.drawImage(contadorFondo, 0, 15, null);
 		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),40,77);
+		g2.drawImage(inicial, 0, 0, null);
 
 	}
 	
