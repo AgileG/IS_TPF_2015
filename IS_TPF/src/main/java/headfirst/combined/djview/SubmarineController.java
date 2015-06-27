@@ -25,7 +25,7 @@ public class SubmarineController implements ControllerInterface{
 		modelS=model_1;
 		vistaS= new SubmarineView(this,modelS);
 		ventana= new Ventana(vistaS);
-		vistaS.PasarFrame(ventana);
+		vistaS.PasarFrame(ventana);		
 		        
 	}
 	

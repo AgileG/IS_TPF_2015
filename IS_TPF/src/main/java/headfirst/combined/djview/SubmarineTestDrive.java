@@ -1,7 +1,5 @@
 package main.java.headfirst.combined.djview;
 
-import javax.swing.JFrame;
-
 public class SubmarineTestDrive {
 	
 

@@ -9,11 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class SubmarineModel extends JPanel implements SubmarineModelInterface, Runnable{
+public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
 	private Thread hilo;

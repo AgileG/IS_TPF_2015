@@ -11,3 +11,4 @@ Se crea etiqueta REL1.1.1 de version testeada, en base a requerimientos de consi
 Agregamos vista nueva y clases asociadas para nuevo modelo.
 Se actualiza carpeta Imagenes.
 Se agrega menu en nueva vista de submarino.
+Se corrige SubmarineModel y SubmarineTestDrive.
