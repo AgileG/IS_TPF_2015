@@ -1,5 +1,6 @@
 package main.java.headfirst.combined.djview;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -11,13 +12,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class SubmarineView extends JPanel implements KeyListener, Runnable{
+public class SubmarineView extends JPanel implements KeyListener, Runnable,ActionListener{
 	
-	ControllerInterface controller;
+	ControllerInterface controlle;
 	SubmarineModelInterface model;
 	Thread hilo;
 	
@@ -27,17 +32,25 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable{
 	private Image Oceano;
 	
 	private Image Submarino;
+	private Image contadorFondo;
+	
+	JFrame ventana;
+	JMenuBar menuBar;
+	JMenu menu;
+    JMenuItem restartMenuItem;
+    JMenuItem ayudaMenuItem;
 	
 
 	public SubmarineView(ControllerInterface controller, SubmarineModelInterface model) {
 		
-		this.controller=controller;
+		this.controlle=controller;
 		this.model=model;
 		
 		vivo = true;
 		setFocusable(true);
 		Oceano = new ImageIcon("Imagenes/Background.gif").getImage();
 		Submarino = new ImageIcon("Imagenes/Submarino_fx.png").getImage();
+		contadorFondo = new ImageIcon("Imagenes/ContFondo2.png").getImage();
 		this.addKeyListener(this);
 		dibujar = false;
 		vivo = true;
@@ -47,6 +60,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable{
 		explosion = new ImageIcon("Data/Explosion.gif").getImage();
 		dibujar = false;
 		keyboard_on=true;
+        
 
 	}
 	
@@ -56,6 +70,44 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable{
 		{
 			repaint();			
 		}
+	}
+	
+	public void PasarFrame(JFrame vent) 
+	{
+		ventana = vent;
+		
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//JFrame.setDefaultLookAndFeelDecorated(true);
+				menuBar = new JMenuBar();
+		        menu = new JMenu("Menu");
+		        restartMenuItem = new JMenuItem("Reiniciar");
+		        menu.add(restartMenuItem);
+		        restartMenuItem.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent event) {
+		                controlle.start();
+		            }
+		        });
+		        
+		        ayudaMenuItem = new JMenuItem("Ayuda");
+		        menu.add(ayudaMenuItem);
+		        ayudaMenuItem.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent event) {
+		                controlle.stop();
+		            }
+		        });
+		        
+		        JMenuItem exit = new JMenuItem("Salir");
+		        exit.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent event) {
+		                System.exit(0);
+		            }
+		        });
+
+		        menu.add(exit);
+		
+		menuBar.add(menu);
+		ventana.setJMenuBar(menuBar);
+		ventana.getContentPane().add(this, BorderLayout.CENTER);
 	}
 	
 	public void addNotify() {
@@ -72,7 +124,8 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable{
 		g2.drawImage(Submarino, model.getX(), model.getY(), null);
 		g2.setFont(new Font("digital display tfb", Font.ITALIC, 75));
 		g2.setColor(Color.red.darker());
-		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),30,75);
+		g2.drawImage(contadorFondo, 0, 15, null);
+		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),40,77);
 
 	}
 	
@@ -134,6 +187,12 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable{
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
