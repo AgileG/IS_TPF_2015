@@ -57,14 +57,14 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				{
 					centesimas=0;
 					segundos+=1;
-					if(segundos <= 5){
-					bpm = modelB.getBPM() + 20;
-					if(bpm < 60 && segundos<5){modelB.setBPM(bpm);}
-					else{modelB.setBPM(60);}
-					modelB.notifyBeatObservers();}
+					if(segundos <= 1){
+					bpm = 90;
+					modelB.setBPM(bpm);
+					}
+					modelB.notifyBeatObservers();
 				}
 				
-				if(segundos>=5 && (centesimas%2==0))
+				if(segundos>=4 && (centesimas%2==0))
 				{
 					modelB.notifyBeatObservers();
 				}
