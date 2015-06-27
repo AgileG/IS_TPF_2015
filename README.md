@@ -15,3 +15,4 @@ Se corrige SubmarineModel y SubmarineTestDrive.
 Se agrega funciones al menu y vista Djview con nuestro modelo.
 Se agrega funcion de bloqueo de teclado luego de los 10 segundos.
 Probamos nuevo sonido.
+Se corrige funciones de submarineModel y actualiza sonido.

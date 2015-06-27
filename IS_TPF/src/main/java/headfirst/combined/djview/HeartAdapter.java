@@ -45,4 +45,10 @@ public class HeartAdapter implements BeatModelInterface {
 	{
 		nInstancia = n;
 	}
+
+	@Override
+	public void notifyBeatObservers() {
+		// TODO Auto-generated method stub
+		
+	}
 }

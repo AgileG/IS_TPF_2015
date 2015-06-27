@@ -20,7 +20,7 @@ public interface SubmarineModelInterface {
 	
 	boolean getVivo();
 	
-	void PasarBeatModel(BeatModel modelB);
+	void PasarBeatModel(BeatModelInterface modelB);
 	
 	void registerObserver(BeatObserver o);
   

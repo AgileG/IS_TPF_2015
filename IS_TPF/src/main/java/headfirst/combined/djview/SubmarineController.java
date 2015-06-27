@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 public class SubmarineController implements ControllerInterface{
 	
 	SubmarineModelInterface modelS;
-	BeatModel modelB;
+	BeatModelInterface modelB;
 	HeartModelInterface modelH;
 	DJView view;
 	SubmarineView vistaS;
@@ -50,11 +50,8 @@ public class SubmarineController implements ControllerInterface{
 		vistaS.setVisibleInicial(false);
 		modelS.setX(0);
 		modelS.setY(250);
-		modelB.on();
 		view.disableStartMenuItem();
 		view.enableStopMenuItem();
-		modelB.setBPM(10);
-		
 	}
 	public void stop()
 	{

@@ -13,6 +13,8 @@ public interface BeatModelInterface {
 	
 	int getnInstancia();
 	
+	void notifyBeatObservers();
+	
 	void setnInstancia(int nInstancia);
   
 	void registerObserver(BeatObserver o);

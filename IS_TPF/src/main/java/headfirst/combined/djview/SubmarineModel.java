@@ -17,10 +17,10 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
 	private Thread hilo;
-	BeatModel modelB;
+	BeatModelInterface modelB;
 
 	private Timer timer, tiempo;
-	private boolean vivo, pausar;
+	private boolean vivo, pausar, alarma;
 	private int x, y, contador, segundos, centesimas, descargas;
 	
 	public SubmarineModel()
@@ -32,6 +32,7 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		segundos = 0;
 		descargas =10;
 		pausar =false;
+		alarma=false;
 		
 		x=0;
 		y=250;
@@ -48,23 +49,24 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		
 		while (vivo)
 		{
-			int bpm=1;
 			while(pausar == false){
 			if(y>500)
 			{
 				tiempo.start();
+				if(segundos == 0 && centesimas==1 && alarma==false){
+					modelB.on();
+					modelB.setBPM(90);
+					alarma=true;
+					}
+				
 				if(centesimas==10)
 				{
 					centesimas=0;
 					segundos+=1;
-					if(segundos <= 1){
-					bpm = 90;
-					modelB.setBPM(bpm);
-					}
 					modelB.notifyBeatObservers();
 				}
 				
-				if(segundos>=4 && (centesimas%2==0))
+				if(segundos>=6 && (centesimas%2==0))
 				{
 					modelB.notifyBeatObservers();
 				}
@@ -80,7 +82,10 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				tiempo.stop();
 				centesimas=0;
 				segundos=0;
-				if(bpm > 10){modelB.setBPM(10); bpm=1;}
+				if(alarma == true){
+				modelB.off();
+				modelB.initialize();
+				alarma =false;}
 			}
 			}
 			tiempo.stop();
@@ -102,7 +107,7 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		vivo = false;
 	}
 	
-	public void PasarBeatModel(BeatModel model)
+	public void PasarBeatModel(BeatModelInterface model)
 	{
 		modelB=model;
 	}
