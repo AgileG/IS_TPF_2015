@@ -13,3 +13,4 @@ Se actualiza carpeta Imagenes.
 Se agrega menu en nueva vista de submarino.
 Se corrige SubmarineModel y SubmarineTestDrive.
 Se agrega funciones al menu y vista Djview con nuestro modelo.
+Se agrega funcion de bloqueo de teclado luego de los 10 segundos.

@@ -166,7 +166,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		// TODO Auto-generated method stub
 		int c = e.getKeyCode();
 		String aux = "";
-		if(keyboard_on)
+		if(keyboard_on && model.getSegundos()<10)
 		{
 			if (c==KeyEvent.VK_UP&&model.getY()>190)
 			{			
