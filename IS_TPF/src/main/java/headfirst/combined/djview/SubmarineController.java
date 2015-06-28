@@ -50,6 +50,7 @@ public class SubmarineController implements ControllerInterface{
 		vistaS.setVisibleInicial(false);
 		modelS.setX(0);
 		modelS.setY(250);
+		modelS.setContar(true);
 		view.disableStartMenuItem();
 		view.enableStopMenuItem();
 	}

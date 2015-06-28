@@ -17,3 +17,4 @@ Se agrega funcion de bloqueo de teclado luego de los 10 segundos.
 Probamos nuevo sonido.
 Se corrige funciones de submarineModel y actualiza sonido.
 Se agrega funcion de hundir barco.
+Modificaciones Funciones submarineModel.

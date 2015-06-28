@@ -18,6 +18,8 @@ public interface SubmarineModelInterface {
 	
 	void setPausar(boolean b);
 	
+	void setContar(boolean b);
+	
 	boolean getVivo();
 	
 	void PasarBeatModel(BeatModelInterface modelB);
