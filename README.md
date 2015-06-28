@@ -20,3 +20,4 @@ Se agrega funcion de hundir barco.
 Modificaciones Funciones submarineModel.
 Agregacion de efecto hundir submarine. y correcciones.
 Agrega boton Ayuda.
+Correcciones SubmarineController boton Parar.

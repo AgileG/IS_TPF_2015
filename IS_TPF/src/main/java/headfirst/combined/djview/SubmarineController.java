@@ -59,7 +59,6 @@ public class SubmarineController implements ControllerInterface{
 	public void stop()
 	{
 		inverso(pausa);
-		int BPM = modelB.getBPM();
 		
 		if(pausa==true)
 		{
@@ -71,7 +70,7 @@ public class SubmarineController implements ControllerInterface{
 		{
 			vistaS.setPausar(false);
 			modelB.on();
-			modelB.setBPM(BPM);
+			modelB.setBPM(90);
 		}
 	}
 	
