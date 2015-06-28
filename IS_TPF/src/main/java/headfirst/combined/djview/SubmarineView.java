@@ -155,7 +155,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		        ayudaMenuItem.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent event) {
 		            	try {
-			       		     File path = new File ("Archivos/Enunciado.pdf");
+			       		     File path = new File ("Archivos/Ayuda.pdf");
 			       		     Desktop.getDesktop().open(path);
 			       		}catch (IOException ex) {
 			       		     ex.printStackTrace();
