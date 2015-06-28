@@ -21,3 +21,4 @@ Modificaciones Funciones submarineModel.
 Agregacion de efecto hundir submarine. y correcciones.
 Agrega boton Ayuda.
 Correcciones SubmarineController boton Parar.
+Se agregan test de submarineModel.

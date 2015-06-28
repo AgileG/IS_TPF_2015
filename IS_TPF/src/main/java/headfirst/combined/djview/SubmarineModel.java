@@ -171,6 +171,14 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		hilo = new Thread(this);
 		hilo.start();
 	}
+	
+	public BeatModel getBeatModel(){
+		return (BeatModel)modelB;
+	}
+	
+	public boolean getPausar(){return pausar;}
+	
+	public boolean getContar(){return contar;}
   
 	public void registerObserver(BeatObserver o) {
 		beatObservers.add(o);
