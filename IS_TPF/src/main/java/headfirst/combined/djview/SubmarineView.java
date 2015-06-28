@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,7 +30,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 	Graphics2D g2;
 	private Image Background;
 	private Image explosion;
-	private boolean dibujar, vivo, keyboard_on, pausar;
+	private boolean dibujar, vivo, keyboard_on, pausar, hundir;
 	private Image Oceano;
 	
 	private Image Submarino;
@@ -41,6 +42,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 	JMenu menu;
     JMenuItem restartMenuItem;
     JMenuItem ayudaMenuItem;
+    private Timer bajar;
 	
 
 	public SubmarineView(ControllerInterface controller, SubmarineModelInterface model) {
@@ -52,7 +54,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		setFocusable(true);
 		Oceano = new ImageIcon("Imagenes/Background.gif").getImage();
 		Submarino = new ImageIcon("Imagenes/Submarino_fx.png").getImage();
-		contadorFondo = new ImageIcon("Imagenes/ContFondo2.png").getImage();
+		contadorFondo = new ImageIcon("Imagenes/ContFondo3.png").getImage();
 		inicial = new ImageIcon("Imagenes/Inicial.png").getImage();
 		this.addKeyListener(this);
 		dibujar = false;
@@ -64,16 +66,37 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		dibujar = false;
 		keyboard_on=true;
 		pausar = false;
+		hundir=true;
         
 
 	}
 	
 	public void run() {
 		
+		bajar = new Timer(10, new ActionListener(){
+			public void actionPerformed(ActionEvent e){						
+					model.setY(model.getY()+1);
+					model.setProfundidad(model.getProfundidad()+1.29);
+					Submarino = new ImageIcon("Imagenes/Submarino_fx_down.png").getImage();						
+			}
+		});
+		
 		while(model.getVivo()){
 		while (pausar==false)
-		{
-			repaint();			
+		{	
+			if(model.getSegundos()==10&&model.getCentesimas()==0 && hundir==true)
+			{
+				hundir=false;
+				bajar.start();				
+			}
+			if(model.getY()>=702 && model.getY()<712)
+			{
+				bajar.stop();
+				hundir=true;
+			}
+			
+			repaint();
+			
 		}
 		try {
 			Thread.sleep(500);
@@ -82,6 +105,11 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 			e.printStackTrace();
 		}
 		}
+	}
+	
+	public void setSubmarinePos()
+	{
+		Submarino = new ImageIcon("Imagenes/Submarino_fx.png").getImage();
 	}
 	
 	public void setVisibleInicial(boolean b)
@@ -153,10 +181,14 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		g2 = (Graphics2D) g;
 		g2.drawImage(Oceano, 0, 0, null);		
 		g2.drawImage(Submarino, model.getX(), model.getY(), null);
-		g2.setFont(new Font("digital display tfb", Font.ITALIC, 75));
-		g2.setColor(Color.red.darker());
 		g2.drawImage(contadorFondo, 25, 10, null);
-		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),40,77);
+		g2.setFont(new Font("digital display tfb", Font.ITALIC, 85));
+		g2.setColor(Color.red.darker());
+		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),38,99);
+		g2.setFont(new Font("Arial narrow", Font.ITALIC, 75));
+		g2.setColor(Color.GRAY.darker());
+		DecimalFormat formato = new DecimalFormat("#.#");
+		g2.drawString("Profundidad: "+formato.format(model.getProfundidad())+"m",180,99);	
 		g2.drawImage(inicial, 0, 0, null);
 
 	}
@@ -172,12 +204,16 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 			{			
 				int y= model.getY() - 2;
 				model.setY(y);
+				double p = model.getProfundidad()-2.58;
+				model.setProfundidad(p);
 				Submarino = new ImageIcon("Imagenes/Submarino_fx_up.png").getImage();
 			}
 			
 			if (c==KeyEvent.VK_DOWN&&model.getY()<570)
 			{
 				int y= model.getY() + 2;
+				double p = model.getProfundidad()+2.58;
+				model.setProfundidad(p);
 				model.setY(y);
 				Submarino = new ImageIcon("Imagenes/Submarino_fx_down.png").getImage();
 			}

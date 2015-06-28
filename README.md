@@ -18,3 +18,4 @@ Probamos nuevo sonido.
 Se corrige funciones de submarineModel y actualiza sonido.
 Se agrega funcion de hundir barco.
 Modificaciones Funciones submarineModel.
+Agregacion de efecto hundir submarine. y correcciones.

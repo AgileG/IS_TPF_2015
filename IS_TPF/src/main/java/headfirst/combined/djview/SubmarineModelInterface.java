@@ -20,6 +20,10 @@ public interface SubmarineModelInterface {
 	
 	void setContar(boolean b);
 	
+	double getProfundidad();
+	
+	void setProfundidad(double p);
+	
 	boolean getVivo();
 	
 	void PasarBeatModel(BeatModelInterface modelB);

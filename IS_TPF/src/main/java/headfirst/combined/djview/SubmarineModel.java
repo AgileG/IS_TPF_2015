@@ -20,8 +20,9 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	BeatModelInterface modelB;
 
 	private Timer timer, tiempo;
-	private boolean vivo, pausar, alarma, hundir, contar;
+	private boolean vivo, pausar, alarma, contar;
 	private int x, y, contador, segundos, centesimas, descargas;
+	private double profundidad;
 	
 	public SubmarineModel()
 	{
@@ -33,11 +34,12 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		descargas =10;
 		pausar =false;
 		alarma=false;
-		hundir=false;
+		//hundir=false;
 		contar= true;
+		profundidad=0;
 		
 		x=0;
-		y=250;
+		y=190;
 		vivo=true;
 		
 	}
@@ -50,17 +52,11 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 		});
 		
 		while (vivo)
-		{
+		{		
 			while(pausar == false && contar==true){
 			if(y>500)
 			{
 				tiempo.start();
-				
-				if(centesimas==1&&hundir==true)
-				{
-					if(y<590){y = y + 20;}
-					hundir=false;
-				}
 				
 				if(segundos == 0 && centesimas==1 && alarma==false){
 					modelB.on();
@@ -81,10 +77,9 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				if(segundos>=6 && (centesimas%2==0))
 				{
 					modelB.notifyBeatObservers();
-					if(segundos >=10){hundir= true;}
 				}
-				
-				if(hundir == true && y>=590 && segundos > 10)
+
+				if(y>700)
 				{
 					modelB.off();
 					modelB.initialize();
@@ -145,6 +140,16 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 	{
 		if(b == true){contar = true;}
 		else{contar = false;}
+	}
+	
+	public double getProfundidad()
+	{
+		return profundidad;
+	}
+	
+	public void setProfundidad(double p)
+	{
+		profundidad=p;
 	}
 	
 	public boolean getVivo(){return vivo;} 
