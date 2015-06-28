@@ -5,7 +5,7 @@ import main.java.headfirst.combined.djview.SubmarineModel;
 import main.java.headfirst.combined.djview.SubmarineModelInterface;
 import main.java.headfirst.combined.djview.SubmarineView;
 import main.java.headfirst.combined.djview.SubmarineController;
-public class SubmarineControllerTest {
+public class SubmarineControllerTest extends TestCase {
 	
 	private SubmarineModel model;
 	private SubmarineController controller;
@@ -14,7 +14,7 @@ public class SubmarineControllerTest {
 	
 	
 	public void setSub(){
-		
+		model = new SubmarineModel();
 		controller = new SubmarineController (model);
 		view = controller.getVistaS();
 		
@@ -36,9 +36,9 @@ public class SubmarineControllerTest {
 		
 		setSub();
 		controller.inverso(true);
-		TestCase.assertEquals(true, controller.getPausa());
-		controller.inverso(false);
 		TestCase.assertEquals(false, controller.getPausa());
+		controller.inverso(false);
+		TestCase.assertEquals(true, controller.getPausa());
 		
 		
 		
