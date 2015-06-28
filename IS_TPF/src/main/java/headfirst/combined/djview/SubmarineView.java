@@ -183,6 +183,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		hilo.start();
 		model.iniciarHilo();
 	}
+	 public boolean getPausar(){return pausar;}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

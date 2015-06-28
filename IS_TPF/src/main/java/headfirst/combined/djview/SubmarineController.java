@@ -76,7 +76,12 @@ public class SubmarineController implements ControllerInterface{
 			}
 		}
 	}
-	
+	public SubmarineView getVistaS(){
+		return vistaS ;
+	}
+	public boolean getPausa(){
+		return pausa;
+	}
 	public void inverso(boolean b)
 	{
 		if(b==true){pausa=false;}
