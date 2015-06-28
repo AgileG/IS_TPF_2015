@@ -2,6 +2,7 @@ package main.java.headfirst.combined.djview;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
@@ -151,7 +154,12 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		        menu.add(ayudaMenuItem);
 		        ayudaMenuItem.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent event) {
-		                controlle.start();
+		            	try {
+			       		     File path = new File ("Archivos/Enunciado.pdf");
+			       		     Desktop.getDesktop().open(path);
+			       		}catch (IOException ex) {
+			       		     ex.printStackTrace();
+			       		}
 		            }
 		        });
 		        
@@ -188,7 +196,13 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		g2.setFont(new Font("Arial narrow", Font.ITALIC, 75));
 		g2.setColor(Color.GRAY.darker());
 		DecimalFormat formato = new DecimalFormat("#.#");
-		g2.drawString("Profundidad: "+formato.format(model.getProfundidad())+"m",180,99);	
+		if(model.getY()<702)
+			g2.drawString("Profundidad: "+formato.format(model.getProfundidad())+"m",180,99);	
+			else
+			{	
+				g2.setColor(Color.red);
+				g2.drawString("Fuera de control!!!!",180,99);
+			}
 		g2.drawImage(inicial, 0, 0, null);
 
 	}
