@@ -55,10 +55,10 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 			{
 				tiempo.start();
 				
-				if(centesimas==1&&hundir==true)
+				if(hundir==true)
 				{
-					if(y<702){y = y + 20;}
-					hundir=false;
+					if(y<590){y = y + 10;} 
+					else break;
 				}
 				
 				if(segundos == 0 && centesimas==1 && alarma==false){
@@ -67,7 +67,7 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 					alarma=true;
 					}
 				
-				if(centesimas==10)
+				if(centesimas==9)
 				{
 					centesimas=0;
 					segundos+=1;
@@ -77,10 +77,12 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				if(segundos>=6 && (centesimas%2==0))
 				{
 					modelB.notifyBeatObservers();
-					if(segundos >=10){hundir= true;}
+					if(segundos >=10)
+						hundir= true;
+						
 				}
 				
-				if(segundos==60)
+				if(segundos>10 && hundir == true && y >500)
 				{
 					segundos=0;
 					centesimas=0;
@@ -91,7 +93,9 @@ public class SubmarineModel implements SubmarineModelInterface, Runnable{
 				tiempo.stop();
 				centesimas=0;
 				segundos=0;
+			//	System.out.println("no entra al if");
 				if(alarma == true){
+			//		System.out.println("entra al if");
 				modelB.off();
 				modelB.initialize();
 				alarma =false;}

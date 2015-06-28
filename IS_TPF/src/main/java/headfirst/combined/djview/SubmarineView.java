@@ -155,7 +155,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		g2.drawImage(Submarino, model.getX(), model.getY(), null);
 		g2.setFont(new Font("digital display tfb", Font.ITALIC, 75));
 		g2.setColor(Color.red.darker());
-		g2.drawImage(contadorFondo, 0, 15, null);
+		g2.drawImage(contadorFondo, 25, 10, null);
 		g2.drawString(""+model.getSegundos()+"."+model.getCentesimas(),40,77);
 		g2.drawImage(inicial, 0, 0, null);
 
