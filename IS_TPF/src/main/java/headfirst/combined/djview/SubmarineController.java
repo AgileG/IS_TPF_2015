@@ -69,8 +69,11 @@ public class SubmarineController implements ControllerInterface{
 		else
 		{
 			vistaS.setPausar(false);
-			modelB.on();
-			modelB.setBPM(90);
+			if(modelS.getY() > 500)
+			{
+				modelB.on();
+				modelB.setBPM(90);
+			}
 		}
 	}
 	
