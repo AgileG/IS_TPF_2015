@@ -1,8 +1,7 @@
 package Tests;
 import junit.framework.*;
-import main.java.headfirst.combined.djview.BeatModelInterface;
+
 import main.java.headfirst.combined.djview.SubmarineModel;
-import main.java.headfirst.combined.djview.SubmarineModelInterface;
 import main.java.headfirst.combined.djview.BeatModel;
 
 
