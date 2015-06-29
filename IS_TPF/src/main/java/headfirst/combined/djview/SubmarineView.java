@@ -58,7 +58,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		Oceano = new ImageIcon("Imagenes/Background.gif").getImage();
 		Submarino = new ImageIcon("Imagenes/Submarino_fx.png").getImage();
 		contadorFondo = new ImageIcon("Imagenes/ContFondo3.png").getImage();
-		inicial = new ImageIcon("Imagenes/Inicial.png").getImage();
+		inicial = new ImageIcon("Imagenes/Inicial3.png").getImage();
 		this.addKeyListener(this);
 		dibujar = false;
 		vivo = true;
@@ -155,7 +155,7 @@ public class SubmarineView extends JPanel implements KeyListener, Runnable,Actio
 		        ayudaMenuItem.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent event) {
 		            	try {
-			       		     File path = new File ("Archivos/Ayuda.pdf");
+			       		     File path = new File ("Archivos/Enunciado.pdf");
 			       		     Desktop.getDesktop().open(path);
 			       		}catch (IOException ex) {
 			       		     ex.printStackTrace();
