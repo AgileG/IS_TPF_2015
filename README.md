@@ -25,3 +25,4 @@ Se corrige en submarineModel funcion pausar (stop).
 Se agregan test de submarineModel.
 Se agrega test faltantes de version anterior.
 Se corrige entrada a archivo Ayuda.
+Ejecucion 3 modelos al mismo tiempo, simultaneamente.
